@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<constant name="struts.devMode" value="true"></constant>
+	<constant name="struts.enable.DynamicMethodInvocation" value="true"></constant>
+
+	<package name="name1" namespace="/" extends="struts-default">	
+		<action name="index">
+			<result>/index.jsp</result>
+		</action>
+		
+		<action name="loginAction" class="com.hqyj.action.LoginAction" >
+			<result>/jsp/list.jsp</result>	
+			<result name="input">/index.jsp</result>
+			<result name="preRegister">/jsp/register.jsp</result>			
+		</action>
+
+		<action name="studentAction" class="com.hqyj.action.StudentAction" >
+			<result name="preAdd">/jsp/add.jsp</result>
+			<result>/jsp/list.jsp</result>
+		</action>		
+		
+		
+		<action name="registerAction" class="com.hqyj.action.RegisterAction">
+									
+			<result>/index.jsp</result>
+			<result name="input">/jsp/register.jsp</result>
+		</action>	
+	</package>
+	
+	
+<!--拦截器 -->	
+	<!-- <package name="all" namespace="/" extends="struts-default">
+		<interceptors>
+			<interceptor name="myInterceptor1" class="com.hqyj.action.MyInterceptor1">
+				<param name="excludeMethods">wow</param>
+			</interceptor>
+			<interceptor name="myInterceptor2" class="com.hqyj.action.MyInterceptor2"></interceptor>
+			<interceptor name="myExcludeMethodInterceptor" class="com.hqyj.action.MyExcludeMethodInterceptor">
+				此拦截器继承了MethodFilterInterceptor，支持方法过滤拦截。拦截所有方法，但是不拦截 preRegister
+				<param name="excludeMethods">wow</param>
+			</interceptor>
+			
+			<interceptor-stack name="myStack">
+				<interceptor-ref name="myInterceptor1"></interceptor-ref>
+				<interceptor-ref name="myInterceptor2"></interceptor-ref>
+				<interceptor-ref name="myExcludeMethodInterceptor"></interceptor-ref>
+				
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="myStack"></default-interceptor-ref>
+		
+		<action name="wowAction" class="com.hqyj.action.LoginAction">
+			<result name="wow1">/index.jsp</result>
+			<result name="wow">/index.jsp</result>
+			<result name="input">/index.jsp</result>
+		</action>
+	</package> -->
+	
+	
+	
+	
+	
+</struts>

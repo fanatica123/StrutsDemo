@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE validators PUBLIC
+  		"-//Apache Struts//XWork Validator 1.0.3//EN"
+  		"http://struts.apache.org/dtds/xwork-validator-1.0.3.dtd">
+<validators>
+	<field name="username">
+		<field-validator type="requiredstring">
+			<param name="trim">true</param>
+			<message>请输入用户名</message>
+		</field-validator>
+	</field>
+	
+	
+	<field name="password">
+		<field-validator type="requiredstring">
+			<!-- 注入取消使用trim -->
+			<param name="trim">true</param>
+			<message>请输入密码</message>
+		</field-validator>
+		<field-validator type="stringlength">
+			<param name="minLength">3</param>
+			<param name="maxLength">8</param>
+			<message>请输入${minLength}到${maxLength}位的密码</message>
+		</field-validator>
+	</field>
+	<field name="confirmpassword">
+		<field-validator type="requiredstring">
+			<param name="trim">true</param>
+			<message>确认密码不能为空</message>
+		</field-validator>
+		<field-validator type="stringlength">
+			<param name="minLength">3</param>
+			<param name="maxLength">8</param>
+			<message>请输入${minLength}到${maxLength}位的确认密码</message>
+		</field-validator>
+		
+		<!--  fieldexpression使用表达式，判断确认密码和密码必须一致-->
+		<field-validator type="fieldexpression">
+				<param name="expression"><![CDATA[confirmpassword.equals(password)]]></param>
+				<message>两次密码输入不一致！</message>
+		</field-validator>
+	</field>
+	
+	
+	<field name="gender">
+		<!-- required是一个只验证是否null的内置验证器，不会去除空格 -->
+		<field-validator type="required">
+			<message>请选择性别</message>
+		</field-validator>
+	</field>
+	
+	<field name="age">
+		<field-validator type="int">
+			<param name="min">18</param>
+			<param name="max">100</param>
+			<message>请输入${min}-${max}之间的整数</message>
+		</field-validator>
+	</field>
+	
+	<field name="score">
+		<!-- 使用正则表达式判断 -->
+		<field-validator type="regex">
+			<param name="regex">
+				\d+
+			</param>
+			<message>请输出正确的成绩</message>
+		</field-validator>
+	</field>
+	
+	<!-- 如果不为空，需要满足格式 -->
+	<field name="email">
+		<field-validator type="email">
+			<message>请输入正确的邮箱格式</message>
+		</field-validator>
+	</field>
+	
+	<field name="url">
+		<field-validator type="url">
+			<message>请输入正确的url地址</message>
+		</field-validator>
+	</field>
+</validators>
